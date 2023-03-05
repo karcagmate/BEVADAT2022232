@@ -81,14 +81,14 @@ def dict_to_list(input_dict):
     _tuple=tuple(list_help)
     return _tuple
 
-##person = {
-  ##  'first_name': 'John',
-   ## 'last_name': 'Doe',
-   ## 'age': 25,
-   ## 'favorite_colors': ['blue', 'green'],
-   ## 'active': True
-##}
-##dict_to_list(person)
+#person = {
+    #'first_name': 'John',
+    #'last_name': 'Doe',
+    #'age': 25,
+    #'favorite_colors': ['blue', 'green'],
+    #'active': True
+#}
+#dict_to_list(person)
 
 # %%
 #If all the functions are created convert this notebook into a .py file and push to your repo

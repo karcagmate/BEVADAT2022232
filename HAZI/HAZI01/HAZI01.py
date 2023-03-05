@@ -8,12 +8,14 @@
 # %%
 def subset(input_list,start_index,end_index):
     out_list=[]
+    if end_index!=len(input_list):
+       end_index=end_index+1
     for index in range(start_index,end_index):
         out_list.append(input_list[index])
     return out_list
 
-##pl=[1,2,4,5,6]
-##subset(pl,0,2)
+#pl=[1,2,4,5,6]
+#subset(pl,0,0)
 
 # %%
 #Create a function that returns every nth element of a list.
@@ -31,6 +33,7 @@ def every_nth(input_list,step_size):
 
 ##pl=[1,2,4,5,6]
 ##every_nth(pl,3)
+#jo
 
 # %%
 #Create a function that can decide whether a list contains unique values or not
@@ -69,6 +72,7 @@ def flatten(input_list):
 
 ##pl=[1, [2, [3, 4], 5], 6]
 ##latten(pl)
+#jo
 
 
 # %%
@@ -103,6 +107,7 @@ def reverse_tuples(input_list):
 
 ##pl=[(1,2),(3,4),(5,6)]
 ##reverse_tuples(pl)
+#jo
 
 # %%
 #Create a function that removes duplicates from a list
@@ -114,14 +119,15 @@ def reverse_tuples(input_list):
 
 
 
-def remove_tuplicates(input_list):
- data=set(input_list)
+def remove_duplicates(input_list):
+ data=list(set(input_list))
  out_list=[]
  for datas in data:
-  out_list.append(datas)
+     out_list.append(datas)
+ 
  return out_list
-##pl=[1,2,3,4,1,2,2,2]
-##remove_tuplicates(pl)
+#pl=[1,2,3,4,1,2,2,2,2,2]
+#remove_duplicates(pl)
 
 
 # %%
