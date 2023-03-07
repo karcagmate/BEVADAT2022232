@@ -65,12 +65,13 @@ def bool_array(inarray:np.array)->np.array:
 # Ki: [[ True False False], [ True  True  True], [False False False]]
 # invert_bool_array()
 def invert_bool_array(array:np.array)->np.array:
-    newarr = array.astype(bool)
+    newarr =np.invert(array.astype(bool))
     
     return newarr
 
 #proba=np.array([[1, 0, 0], [1, 1, 1],[0, 0, 0]])
-#invert_bool_array(proba)
+#print(invert_bool_array(proba))
+
 
 # Készíts egy olyan függvényt ami a paraméterként kapott array-t kilapítja
 # Be: [[1,2], [3,4]]
