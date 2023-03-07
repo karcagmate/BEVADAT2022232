@@ -78,7 +78,7 @@ def bool_array(inarray:np.array)->np.array:
 # Ki: [[ True False False], [ True  True  True], [False False False]]
 # invert_bool_array()
 def invert_bool_array(array:np.array)->np.array:
-    newarr = array.astype(bool)
+    newarr =np.invert (array.astype(bool))
     
     return newarr
 
