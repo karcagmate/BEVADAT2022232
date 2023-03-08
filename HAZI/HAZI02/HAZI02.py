@@ -8,13 +8,16 @@ import numpy as np
 # compare_two_array()
 # egyenlő elemszámúakra kell csak hogy működjön
 def compare_two_array(input1:np.array,input2:np.array)->np.array:
-    return np.array_equal()    
-pl1=np.array([7,8,9])
-pl2=np.array([9,8,7] )
+    arr=input1==input2
+    print(arr)
+    input1[1<input1]=0
+    return np.amax(input1)   
+pl1=np.array([7,5,9])
+pl2=np.array([9,6,7] )
 compare_two_array(pl1,pl2)
 
 
-# %%
+ # %%
 #Készíts egy olyan függvényt, ami vissza adja a megadott array dimenzióit:
 # Be: [[1,2,3], [4,5,6]]
 # Ki: "sor: 2, oszlop: 3, melyseg: 1"
@@ -30,8 +33,8 @@ def get_array_shape(input:np.array):
         return f"sor: {shape[0]}, oszlop: {shape[1]}, melyseg: {shape[2]}"
     
 
-pl=np.array([[1,2,3],[1,2,3],[1,2,3]])
-get_array_shape(pl)
+##pl=np.array([[1,2,3],[1,2,3],[1,2,3]])
+##get_array_shape(pl)
 
 # %%
 # Készíts egy olyan függvényt, aminek segítségével elő tudod állítani egy neurális hálózat tanításához szükséges Y-okat egy numpy array-ből. 
@@ -46,14 +49,19 @@ def encode_Y(input:np.array,class_num:int)->np.array:
         helper[i,int(input[i])]=1
     return helper
 
-pl=np.array([1, 2, 0, 3])
-print(encode_Y(pl,4))
+#pl=np.array([1, 2, 0, 3])
+#print(encode_Y(pl,4))
 
 # %%
 # A fenti feladatnak valósítsd meg a kiértékelését. Adj meg a 2d array-t és adj vissza a decodolt változatát
 # Be:  [[0,1,0,0], [0, 0, 1, 0], [1, 0, 0, 0], [0, 0, 0, 1]]
 # Ki:  [1, 2, 0, 3]
 # decode_Y()
+def decode_Y(input:np.array)->np.array:
+    return np.argmax(input,axis=1)
+
+#pl=np.array([[0,1,0,0], [0, 0, 1, 0], [1, 0, 0, 0], [0, 0, 0, 1]])
+#decode_Y(pl)
 
 # %%
 # Készíts egy olyan függvényt, ami képes kiértékelni egy neurális háló eredményét! Bemenetként egy listát és egy array-t és adja vissza a legvalószínübb element a listából.
@@ -64,9 +72,9 @@ def eval_classification(input1:list, input2:np.array)->str:
     index=np.argmax(input2)
     return input1[index]
 
-pl1=['alma', 'körte', 'szilva']
-pl2=np.array([0.2, 0.2, 0.6])
-eval_classification(pl1,pl2)
+#pl1=['alma', 'körte', 'szilva']
+#pl2=np.array([0.2, 0.2, 0.6])
+#eval_classification(pl1,pl2)
 
 
 
@@ -78,8 +86,8 @@ eval_classification(pl1,pl2)
 def replace_odd_numbers(input:np.array)->np.array:
     return np.where(input%2==1,-1,input)
 
-pl=np.array([1,2,3,4,5,6])
-replace_odd_numbers(pl)
+#pl=np.array([1,2,3,4,5,6])
+#replace_odd_numbers(pl)
 
 # %%
 # Készíts egy olyan függvényt, ami egy array értékeit -1 és 1-re változtatja, attól függően, hogy az adott elem nagyobb vagy kisebb a paraméterként megadott számnál.
@@ -92,8 +100,8 @@ def replace_by_value(input:np.array,treshold:int)->np.array:
     input[input>=treshold]=1
     return input
 
-pl=np.array([1, 2, 5, 0])
-replace_by_value(pl,2)
+#pl=np.array([1, 2, 5, 0])
+#replace_by_value(pl,2)
 
 
 # %%
@@ -105,8 +113,8 @@ replace_by_value(pl,2)
 def array_multi(input:np.array):
     return np.prod(input)
 
-pl=np.array([1,2,3,4])
-array_multi(pl)
+#pl=np.array([1,2,3,4])
+#array_multi(pl)
 
 # %%
 # Készítsd egy olyan függvényt, ami a 2D array értékeit összeszorozza és egy olyan array-el tér vissza, aminek az elemei a soroknak a szorzata
@@ -117,8 +125,8 @@ def array_multi_2d(input:np.array)->np.array:
     rows=np.prod(input,axis=1)
     return rows
 
-pl=np.array([[1, 2], [3, 4]])
-array_multi_2d(pl)
+#pl=np.array([[1, 2], [3, 4]])
+#array_multi_2d(pl)
 
 # %%
 # Készíts egy olyan függvényt, amit egy meglévő numpy array-hez készít egy bordert nullásokkal. Bementként egy array-t várjon és kimenetként egy array jelenjen meg aminek van border-je
@@ -132,8 +140,8 @@ def add_border(input:np.array)->np.array:
     out[1:-1,1:-1]=input
     return out
 
-pl=np.array([[1,2],[3,4]])
-add_border(pl)
+#pl=np.array([[1,2],[3,4]])
+#add_border(pl)
 
 # %%
 # Készíts egy olyan függvényt ami két dátum között felsorolja az összes napot.
@@ -151,9 +159,9 @@ def list_days(start,finish):
         starter+=delta
     return out
 
-starti='2023-03'
-fin='2023-04'
-list_days(starti,fin)
+#starti='2023-03'
+#fin='2023-04'
+#list_days(starti,fin)
 
 
 
@@ -166,7 +174,7 @@ from datetime import datetime
 def datetime_now():
     return datetime.now().strftime('%Y-%m-%d')
 
-datetime_now()
+#datetime_now()
 
 # %%
 # Írj egy olyan függvényt ami visszadja, hogy mennyi másodperc telt el 1970 január 01. 00:00:00 óta.
@@ -177,6 +185,6 @@ import time
 def sec_from_1970()->int:
     return int(time.time())
 
-sec_from_1970()
+#sec_from_1970()
 
 
