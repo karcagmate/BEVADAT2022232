@@ -1,6 +1,16 @@
 # %%
 import numpy as np
 
+# Írj egy olyan fügvényt, ami megfordítja egy 2d array oszlopait
+# Be: [[1,2],[3,4]]
+# Ki: [[2,1],[4,3]]
+# column_swap()
+def column_swap(input:np.array)->np.array:
+    return np.fliplr(input)
+
+#pl=np.array([[1,2],[3,4]])
+#column_swap(pl)
+
 # %%
 #Készíts egy olyan függvényt ami összehasonlít két array-t és adjon vissza egy array-ben, hogy hol egyenlőek 
 # Pl Be: [7,8,9], [9,8,7] 
@@ -8,13 +18,11 @@ import numpy as np
 # compare_two_array()
 # egyenlő elemszámúakra kell csak hogy működjön
 def compare_two_array(input1:np.array,input2:np.array)->np.array:
-    arr=input1==input2
-    print(arr)
-    input1[1<input1]=0
-    return np.amax(input1)   
-pl1=np.array([7,5,9])
-pl2=np.array([9,6,7] )
-compare_two_array(pl1,pl2)
+   out=np.where(np.equal(input1,input2))
+   return out  
+#pl1=np.array([7,8,9])
+#pl2=np.array([9,8,7] )
+#compare_two_array(pl1,pl2)
 
 
  # %%
@@ -25,16 +33,17 @@ compare_two_array(pl1,pl2)
 # 3D-vel még műküdnie kell!
 def get_array_shape(input:np.array):
     shape=input.shape
+    #print(len(shape))
     if len(shape)==1:
-        return f"sor: {shape[0]}, oszlop: 1, melyseg: 1"
+        return f"sor: 1, oszlop: {shape[0]}, melyseg: 1"
     elif len(shape)==2:
         return f"sor: {shape[0]}, oszlop: {shape[1]}, melyseg: 1"
     elif len(shape)==3:
         return f"sor: {shape[0]}, oszlop: {shape[1]}, melyseg: {shape[2]}"
     
 
-##pl=np.array([[1,2,3],[1,2,3],[1,2,3]])
-##get_array_shape(pl)
+#pl=np.array([[1,2,3], [4,5,6]])
+#get_array_shape(pl)
 
 # %%
 # Készíts egy olyan függvényt, aminek segítségével elő tudod állítani egy neurális hálózat tanításához szükséges Y-okat egy numpy array-ből. 
