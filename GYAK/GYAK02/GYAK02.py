@@ -27,11 +27,11 @@ def create_array(input: tuple)->np.array:
 #Ki: [[1,2],[3,1]]
 #set_one()
 def set_one(input:np.array)->np.array:
-   out= np.fill_diagonal(input, 1)
-   return out
+    np.fill_diagonal(input, 1)
+    return input
 
 #proba=np.array([[1,5],[3,5]])
-#print(set_one(proba))
+#(set_one(proba))
 
 # %%
 # Transzponáld a paraméterül kapott mártix-ot:
@@ -39,10 +39,10 @@ def set_one(input:np.array)->np.array:
 # Ki: [[1, 2], [3, 4]]
 # do_transpose()
 def do_transponse(input:np.array)->np.array:
-    out=np.transpose(input)
-    return out
+    np.transpose(input)
+    return input
 
-#proba=np.array([[1, 2], [5, 6]])
+#proba=np.array([[1, 2], [3, 4]])
 #do_transponse(proba)
 
 # %%
