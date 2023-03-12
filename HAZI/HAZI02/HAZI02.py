@@ -157,19 +157,16 @@ def add_border(input:np.array)->np.array:
 # Be: '2023-03', '2023-04'
 # Ki: ['2023-03-01', '2023-03-02', .. , '2023-03-31',]
 # list_days()
-from datetime import timedelta,datetime
-def list_days(start,finish):
-    starter = datetime.strptime(start, '%Y-%m')
-    end = datetime.strptime(finish, '%Y-%m')
-    delta=timedelta(days=1)
-    out=[]
-    while starter<=end:
-        out.append(starter.strftime('%Y-%m-%d'))
-        starter+=delta
-    return out
 
-#starti='2023-03'
-#fin='2023-04'
+def list_days(start:str,finish:str)->np.array:
+    starter =np.datetime64(start)
+    end =np.datetime64(finish)
+   
+    return np.arange(starter,end,  dtype='datetime64[D]')
+    
+
+#starti='2023-05'
+#fin='2023-06'
 #list_days(starti,fin)
 
 
@@ -179,21 +176,24 @@ def list_days(start,finish):
  #Írj egy fügvényt ami vissza adja az aktuális dátumot az alábbi formában: YYYY-MM-DD
 # Be:
 # Ki: 2017-03-24 
-from datetime import datetime
-def datetime_now():
-    return datetime.now().strftime('%Y-%m-%d')
 
-#datetime_now()
+def get_act_date()->np.datetime64:
+    return np.datetime64('today')
+
+#get_act_date()
 
 # %%
 # Írj egy olyan függvényt ami visszadja, hogy mennyi másodperc telt el 1970 január 01. 00:00:00 óta.
 # Be: 
 # Ki: másodpercben az idó, int-é kasztolva
 # sec_from_1970()
-import time
+
 def sec_from_1970()->int:
-    return int(time.time())
+    return (np.datetime64('now')-np.datetime64('1970-01-01T00:02:00')).astype(int)
+
 
 #sec_from_1970()
 
 
+
+# %%
