@@ -112,7 +112,7 @@ def plot_population(df:pd.DataFrame)->plt.figure:
     ax.set_xlabel('Country')
     ax.set_ylabel('Population (millions)')
     ax.set_title('Population of Countries')
-    return plt.show()
+    return fig
 
 #plot_population(testing)
 
@@ -137,7 +137,7 @@ def plot_area(df:pd.DataFrame)->plt.figure:
     ax.pie(newdf['area'],labels=newdf['country'])
     
     ax.set_title('Area of Countries')
-    return plt.show
+    return fig
 
 #plot_area(testing)
 
