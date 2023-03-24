@@ -26,6 +26,7 @@ def csv_to_df(path:str)->pd.DataFrame:
 #path="~\Desktop\StudentsPerformance (1).csv"
 #test=csv_to_df(path)
 #test.head()
+#jó
 
 
 
@@ -57,6 +58,7 @@ def capitalize_columns(data:pd.DataFrame)->pd.DataFrame:
 
 #capit=capitalize_columns(test)
 #capit.head()
+#jó
 
 
 
@@ -87,6 +89,7 @@ def math_passed_count(data:pd.DataFrame)->int:
 
 #mathpassed=math_passed_count(test)
 #print(mathpassed)
+#jó
 
 
 
@@ -108,6 +111,7 @@ def did_pre_course(data:pd.DataFrame)->pd.DataFrame:
     return filtered
 
 #did_pre_course(test)
+#jó
 
 
 # %%
@@ -129,6 +133,7 @@ def average_scores(data:pd.DataFrame)->pd.DataFrame:
                                                                      'writing score': 'mean'})
 
 #average_scores(test)
+#jó
 
 
 # %%
@@ -148,7 +153,7 @@ def add_age(data:pd.DataFrame)->pd.DataFrame:
     newdata=data.copy()
     
     random.seed(42)
-    ages=[random.randint(18,66) for _ in range(len(newdata))]
+    ages=[random.randint(17,67) for _ in range(len(newdata))]
     newdata['age']=ages
     return newdata
 
@@ -179,6 +184,7 @@ def female_top_score(data:pd.DataFrame)->tuple:
      
 #female=female_top_score(test)
 #print(female)
+#jó
 
 
 # %%
@@ -219,6 +225,7 @@ def add_grade(data:pd.DataFrame)->pd.DataFrame:
 
 #graded=add_grade(test)
 #graded.head()
+#jó
 
 
 
@@ -277,6 +284,7 @@ def writing_hist(data:pd.DataFrame)->plt.figure:
     return fig
 
 #writing_hist(test)
+#jó
     
 
 # %%
@@ -297,7 +305,9 @@ függvény neve: ethnicity_pie_chart
 # %%
 def ethnicity_pie_chart(data:pd.DataFrame)->plt.figure:
     newdata=data.copy()
-    distribution=newdata['race/ethnicity'].value_counts(normalize=True)
+    distribution=newdata['race/ethnicity'].value_counts()
+    #print(distribution)
+    #distribution=newdata.('race/ethnicity').value_counts(normalize=True)
     fig,ax=plt.subplots()
     ax.pie(distribution.values,labels=distribution.index,autopct='%1.1f%%')
     ax.set_title('Proportion of Students by Race/Ethnicity')
@@ -308,3 +318,5 @@ def ethnicity_pie_chart(data:pd.DataFrame)->plt.figure:
     
 
 
+
+# %%
