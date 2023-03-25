@@ -153,12 +153,19 @@ def add_age(data:pd.DataFrame)->pd.DataFrame:
     newdata=data.copy()
     
     random.seed(42)
-    ages=[random.randint(17,67) for _ in range(len(newdata))]
-    newdata['age']=ages
+    #ages=[random.randint(18,66) for _ in range(len(newdata))]
+    
+    newdata['age']=[random.randint(18,66) for _ in range(len(newdata))]
+    #print(newdata['age'])
     return newdata
 
 #age=add_age(test)
-#age.head()
+
+
+
+#print(age['age'].max())
+#print(age['age'].min())
+
 
 
 
@@ -247,12 +254,12 @@ függvény neve: math_bar_plot
 # %%
 def math_bar_plot(data:pd.DataFrame)->plt.figure:
     newdata=data.copy()
-    scores=newdata.groupby('gender')['math score'].mean()
-    fig,ax=plt.subplots()
-    ax.bar(scores.index,scores.values)
-    ax.set_xlabel('Gender')
-    ax.set_ylabel('Math score')
+    avg_math_score = newdata.groupby('gender')['math score'].mean()
+    fig, ax = plt.subplots()
+    ax.bar(avg_math_score.index, avg_math_score.values)
     ax.set_title('Average Math Score by Gender')
+    ax.set_xlabel('Gender')
+    ax.set_ylabel('Math Score')
     return fig
 
 #math_bar_plot(test)
@@ -306,10 +313,14 @@ függvény neve: ethnicity_pie_chart
 def ethnicity_pie_chart(data:pd.DataFrame)->plt.figure:
     newdata=data.copy()
     distribution=newdata['race/ethnicity'].value_counts()
+    prop=distribution/distribution.sum()
+   # print(distribution)
+    #print(prop)
+
     #print(distribution)
     #distribution=newdata.('race/ethnicity').value_counts(normalize=True)
     fig,ax=plt.subplots()
-    ax.pie(distribution.values,labels=distribution.index,autopct='%1.1f%%')
+    ax.pie(prop.values,labels=prop.index,autopct='%1.1f%%')
     ax.set_title('Proportion of Students by Race/Ethnicity')
     return fig
 
