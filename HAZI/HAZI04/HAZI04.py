@@ -165,6 +165,7 @@ def add_age(data:pd.DataFrame)->pd.DataFrame:
 
 #print(age['age'].max())
 #print(age['age'].min())
+#jó
 
 
 
@@ -263,6 +264,7 @@ def math_bar_plot(data:pd.DataFrame)->plt.figure:
     return fig
 
 #math_bar_plot(test)
+#jó
 
 
 # %%
@@ -313,6 +315,8 @@ függvény neve: ethnicity_pie_chart
 def ethnicity_pie_chart(data:pd.DataFrame)->plt.figure:
     newdata=data.copy()
     distribution=newdata['race/ethnicity'].value_counts()
+    test=newdata.groupby('race/ethnicity')['parental level of education'].count()
+    #print(test)
     prop=distribution/distribution.sum()
    # print(distribution)
     #print(prop)
