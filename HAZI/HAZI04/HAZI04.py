@@ -315,16 +315,16 @@ függvény neve: ethnicity_pie_chart
 def ethnicity_pie_chart(data:pd.DataFrame)->plt.figure:
     newdata=data.copy()
     distribution=newdata['race/ethnicity'].value_counts()
-    test=newdata.groupby('race/ethnicity')['parental level of education'].count()
+    #test=newdata.groupby('race/ethnicity')['parental level of education'].count()
     #print(test)
-    prop=distribution/distribution.sum()
+    prop=distribution/newdata.shape[0]*100
    # print(distribution)
     #print(prop)
 
     #print(distribution)
     #distribution=newdata.('race/ethnicity').value_counts(normalize=True)
     fig,ax=plt.subplots()
-    ax.pie(prop.values,labels=prop.index,autopct='%1.1f%%')
+    ax.pie(prop,labels=distribution.index,autopct='%1.1f%%')
     ax.set_title('Proportion of Students by Race/Ethnicity')
     return fig
 
