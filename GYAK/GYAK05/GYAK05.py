@@ -4,7 +4,7 @@ from typing import Tuple
 from scipy.stats import mode
 from sklearn.metrics import confusion_matrix, euclidean_distances
 import seaborn as sns
-path="iris.csv"
+#path="iris.csv"
 class KNNClassifier:
 
  
