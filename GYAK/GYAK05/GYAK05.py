@@ -29,7 +29,7 @@ class KNNClassifier:
 
         return x,y
     
-    def train_test_split(self,featrues:np.ndarray,labels:np.ndarray)->Tuple[np.ndarray,np.ndarray,np.ndarray]:
+    def train_test_split(self,featrues:np.ndarray,labels:np.ndarray)->None:
         test_size=int(len(featrues)*self.test_split_ratio)
         train_size=len(featrues)-test_size
         assert len(featrues)==test_size+train_size,"Size mismatch!"
