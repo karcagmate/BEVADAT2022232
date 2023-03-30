@@ -16,6 +16,10 @@ class KNNClassifier:
         self.x_test=None
         self.y_test=None
         self.y_preds=None
+    @property
+    def k_neighbors(self):
+        return self.k
+
     @staticmethod
     def loadcsv(path:str)->Tuple[np.ndarray,np.ndarray]:
         np.random.seed(42)
@@ -25,20 +29,21 @@ class KNNClassifier:
 
         return x,y
     
-    def train_test_split(featrues:np.ndarray,labels:np.ndarray,self)->Tuple[np.ndarray,np.ndarray,np.ndarray]:
+    def train_test_split(self,featrues:np.ndarray,labels:np.ndarray)->Tuple[np.ndarray,np.ndarray,np.ndarray]:
         test_size=int(len(featrues)*self.test_split_ratio)
         train_size=len(featrues)-test_size
         assert len(featrues)==test_size+train_size,"Size mismatch!"
         x_train,y_train=featrues[:train_size,:],labels[:train_size]
         x_test,y_test=featrues[train_size:,:],labels[train_size:]
         self.x_train,self.y_train=x_train,y_train
+
         self.x_test,self.y_test=x_test,y_test
     
-    def euclidan(element_of_x:np.ndarray,self)->np.ndarray:
+    def euclidan(self,element_of_x:np.ndarray)->np.ndarray:
       return np.sqrt(np.sum((self.x_train-element_of_x)**2,axis=1))
     
     
-    def perdict(x_test:np.ndarray,self)->np.ndarray:
+    def perdict(self,x_test:np.ndarray)->np.ndarray:
         labels_pred=[]
         for x_test_element in x_test:
             distances= self.euclidean(x_test_element)
@@ -54,10 +59,7 @@ class KNNClassifier:
     def confusion_matrix(self):
         return confusion_matrix(self.y_test,self.y_preds)
     
-    @property
-    def k_neighbors(self):
-        return self.k
-
+   
 
 
 
