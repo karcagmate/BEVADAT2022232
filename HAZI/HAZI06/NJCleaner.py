@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 class NJCleaner:
-    def __init__(self,path="2018_03.csv") -> None:
+    def __init__(self,path:str) -> None:
         self.data=pd.read_csv(path)
     def order_by_scheduled_time(self)->pd.DataFrame:
         #newdata=self.data.copy()
