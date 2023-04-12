@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+
 class NJCleaner:
     def __init__(self,path:str) -> None:
         self.data=pd.read_csv(path)
@@ -7,12 +8,13 @@ class NJCleaner:
         #newdata=self.data.copy()
         return self.data.sort_values(by=["scheduled_time"])
     def drop_columns_and_nan(self)->pd.DataFrame:
-        colum=self.data.drop(columns=['from','to'])
-        nan= colum.dropna()
-        self.data=nan
-        return self.data
+       nan=self.data.dropna().drop(['from','to'],axis=1)
+       self.data=nan
+       return self.data
     def convert_date_to_day(self)->pd.DataFrame:
         self.data['day']=pd.to_datetime(self.data['date']).dt.day_name()
+        drop=self.data.drop(['date'],axis=1)
+        self.data=drop
         return self.data
     def convert_scheduled_time_to_part_of_the_day(self)->pd.DataFrame:
         self.data["part_of_the_day"]=pd.to_datetime(self.data['scheduled_time']).dt.hour.apply(lambda time:'early_morning' if time>=4 and time<8 
@@ -32,14 +34,17 @@ class NJCleaner:
         colum=self.data.drop(columns=['train_id','actual_time','delay_minutes'])
         self.data=colum
         return self.data
-    def save_first_60k(self,path:str):
+    def save_first_60k(self,save_path:str):
         sixtyk=self.data.iloc[:60000]
-        sixtyk.to_csv(path,index=False)
-    def prep_df(self,path:str):
+        self.data=sixtyk
+        sixtyk.to_csv(save_path,index=False)
+    def prep_df(self,save_path:str):
         self.order_by_scheduled_time()
         self.drop_columns_and_nan()
         self.convert_date_to_day()
         self.convert_scheduled_time_to_part_of_the_day()
         self.convert_delay()
         self.drop_unnecessary_columns()
-        self.save_first_60k(path)
+        self.save_first_60k(save_path)
+        self.data.to_csv(save_path)
+
