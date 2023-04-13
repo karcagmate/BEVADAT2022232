@@ -34,17 +34,17 @@ class NJCleaner:
         colum=self.data.drop(columns=['train_id','actual_time','delay_minutes'])
         self.data=colum
         return self.data
-    def save_first_60k(self,save_path:str):
+    def save_first_60k(self,path:str):
         sixtyk=self.data.iloc[:60000]
         self.data=sixtyk
-        sixtyk.to_csv(save_path,index=False)
-    def prep_df(self,save_path:str):
+        sixtyk.to_csv(path,index=False)
+    def prep_df(self,path:str):
         self.order_by_scheduled_time()
         self.drop_columns_and_nan()
         self.convert_date_to_day()
         self.convert_scheduled_time_to_part_of_the_day()
         self.convert_delay()
         self.drop_unnecessary_columns()
-        self.save_first_60k(save_path)
-        self.data.to_csv(save_path)
+        self.save_first_60k(path)
+        self.data.to_csv(path)
 
