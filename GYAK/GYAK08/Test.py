@@ -8,8 +8,8 @@ iris=load_iris()
 data=pd.DataFrame(iris.data,columns=iris.feature_names)
 X=data['petal width (cm)'].values
 y=data['sepal length (cm)'].values
-Lr=LinearRegression()
-Lr.split_data(X,y)
+Lr=LinearRegression(data)
+
 X_test,y_test=Lr.fit(X,y)
 pred=Lr.predict(X)
 print(pred)
