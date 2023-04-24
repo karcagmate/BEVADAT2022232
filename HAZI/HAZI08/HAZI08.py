@@ -80,14 +80,17 @@ függvény neve: logistic_train_data
 
 # %%
 def logistic_train_data(iris):
-    iris_df=pd.DataFrame(iris.data,columns=iris.feature_names)
-    iris_df['target']=iris.target
+    data=np.c_[iris['data'],iris['target']]
+    columns=iris['feature_names'] + ['target']
+    iris_df=pd.DataFrame(data,columns=columns)
     iris_df_filtered=iris_df[iris_df['target']<2]
     #print(iris_df_filtered)
     featrue=['sepal width (cm)','petal length (cm)','petal width (cm)','sepal length (cm)']
     X=iris_df_filtered[featrue].values
     y=iris_df_filtered['target'].values
     return X,y
+
+
 
 
 
