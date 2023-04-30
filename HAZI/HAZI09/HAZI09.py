@@ -12,6 +12,7 @@ class KMeansOnDigits():
     def __init__(self,n_clusters,random_state) -> None:
         self.n_clusters=n_clusters
         self.random_state=random_state
+        
 
     def load_dataset(self):
         digits=load_digits()
@@ -36,7 +37,7 @@ class KMeansOnDigits():
         return self.labels
     
     def calc_accuracy(self):
-        accuracy=accuracy_score(self.digits.target,self.labels)
+        accuracy=accuracy_score(self.labels,self.digits.target)
         self.accuracy=accuracy
         return self.accuracy.round(2)
     
@@ -44,3 +45,11 @@ class KMeansOnDigits():
         mat=confusion_matrix(self.digits.target,self.labels)
         self.mat=mat
         return self.mat
+
+
+#km=KMeansOnDigits(10,0)
+#km.load_dataset()
+#km.predict()
+#km.get_labels()
+#print(km.calc_accuracy())
+#print(km.confusion_matrix())
