@@ -13,8 +13,10 @@ függvény neve: mnist_digit_data
 
 # %%
 def mnist_digit_data():
-    fashion_mnist = tf.keras.datasets.fashion_mnist
-    (train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data()
+    #fashion_mnist = tf.keras.datasets.fashion_mnist
+    (train_images, train_labels), (test_images, test_labels) = tf.keras.datasets.mnist.load_data()
+    train_images=train_images/255.0
+    test_images=test_images/255.0
     return train_images,train_labels,test_images,test_labels
 
 # %%
@@ -52,9 +54,10 @@ függvény neve: model_compile
 
 # %%
 def model_compile(model:tf.keras.Sequential):
-    return model.compile(optimizer='Adam',
+     model.compile(optimizer=tf.keras.optimizers.Adam(0.001),
                   loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=False),
-                  metrics=['accuracy'])
+                  metrics=[tf.keras.metrics.SparseCategoricalAccuracy()])
+     return model
     
                   
 
@@ -70,7 +73,8 @@ függvény neve: model_fit
 
 # %%
 def model_fit(model:tf.keras.Sequential,epochs,train_images,train_labels):
-    return model.fit(train_images,train_labels,epochs=epochs)
+     model.fit(train_images,train_labels,epochs=epochs)
+     return model
 
 # %%
 '''
@@ -84,18 +88,20 @@ függvény neve: model_evaluate
 
 # %%
 def model_evaluate(model:tf.keras.Sequential,test_images,test_labels):
-    test_loss,test_acc=model.evaluate(test_images,test_labels,verbose=1)
+    test_loss,test_acc=model.evaluate(test_images,test_labels,verbose=2)
     return test_loss,test_acc
 
 # %%
 #train_images,train_labels,test_images,test_labels=mnist_digit_data()
 #model=mnist_model()
 #compile=model_compile(model)
-#fit=model_fit(model,10,train_images,train_labels)
-#test_loss,test_acc=model_evaluate(model,test_images,test_labels)
+#fit=model_fit(compile,6,train_images,train_labels)
+#test_loss,test_acc=model_evaluate(fit,test_images,test_labels)
 #print(test_loss)
 #print(test_acc)
 
 
 
 
+
+# %%
